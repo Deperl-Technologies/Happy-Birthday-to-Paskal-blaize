@@ -9,63 +9,101 @@
       rel="stylesheet"
     />
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        :root {
-          --gold: #F5C842;
-          --gold-light: #FFE580;
-          --cream: #FFF8E7;
-          --deep: #0A0504;
-          --orange: #E8622A;
-          --rose: #C9445E;
-        }
+      :root {
+        --gold: #f5c842;
+        --gold-light: #ffe580;
+        --cream: #fff8e7;
+        --deep: #0a0504;
+        --orange: #e8622a;
+        --rose: #c9445e;
+      }
 
-        html, body {
-          width: 100%; height: 100%;
-          overflow: hidden;
-          font-family: 'Cormorant Garamond', serif;
-          background: var(--deep);
-          cursor: default;
-        }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Cormorant Garamond", serif;
+        background: var(--deep);
+        cursor: default;
+      }
 
-        /* ── BACKGROUND ── */
-        #bg {
-          position: fixed; inset: 0; z-index: 0;
-          background:
-            radial-gradient(ellipse 80% 80% at 60% 40%, rgba(229,98,42,0.18) 0%, transparent 70%),
-            radial-gradient(ellipse 60% 60% at 20% 70%, rgba(201,68,94,0.14) 0%, transparent 65%),
-            radial-gradient(ellipse 50% 50% at 80% 80%, rgba(245,200,66,0.10) 0%, transparent 60%),
-            linear-gradient(160deg, #1a0c08 0%, #0A0504 50%, #100609 100%);
-        }
+      /* ── BACKGROUND ── */
+      #bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 80% at 60% 40%,
+            rgba(229, 98, 42, 0.18) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 60% at 20% 70%,
+            rgba(201, 68, 94, 0.14) 0%,
+            transparent 65%
+          ),
+          radial-gradient(
+            ellipse 50% 50% at 80% 80%,
+            rgba(245, 200, 66, 0.1) 0%,
+            transparent 60%
+          ),
+          linear-gradient(160deg, #1a0c08 0%, #0a0504 50%, #100609 100%);
+      }
 
-        /* Photo placeholder — replace src with actual photo */
-        #photo {
-          position: fixed; inset: 0; z-index: 1;
-          background:
-            linear-gradient(to bottom, rgba(10,5,4,0.35) 0%, rgba(10,5,4,0.10) 40%, rgba(10,5,4,0.55) 80%, rgba(10,5,4,0.92) 100%);
-        }
-        #photo img {
-          position: absolute; inset: 0;
-          width: 100%; height: 100%;
-          object-fit: cover; object-position: center top;
-          opacity: 0.55;
-          filter: saturate(1.15) contrast(1.05);
-          z-index: -1;
-        }
+      /* Photo placeholder — replace src with actual photo */
+      #photo {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 5, 4, 0.35) 0%,
+          rgba(10, 5, 4, 0.1) 40%,
+          rgba(10, 5, 4, 0.55) 80%,
+          rgba(10, 5, 4, 0.92) 100%
+        );
+      }
+      #photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        opacity: 0.55;
+        filter: saturate(1.15) contrast(1.05);
+        z-index: -1;
+      }
 
-        /* grain overlay */
-        #grain {
-          position: fixed; inset: 0; z-index: 2; pointer-events: none;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-          opacity: 0.35;
-        }
+      /* grain overlay */
+      #grain {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        opacity: 0.35;
+      }
 
-        /* ── MUSIC NOTES CANVAS ── */
-        #notes-canvas {
-          position: fixed; inset: 0; z-index: 3; pointer-events: none;
-        }
+      /* ── MUSIC NOTES CANVAS ── */
+      #notes-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+      }
 
-        /* ── AUDIO BUTTON ── */
+      /* ── AUDIO BUTTON ── */
       #audio-btn {
         position: fixed;
         top: 2rem;
@@ -74,8 +112,8 @@
         width: 42px;
         height: 42px;
         border-radius: 50%;
-        border: 1px solid rgba(245,200,66,0.4);
-        background: rgba(10,5,4,0.6);
+        border: 1px solid rgba(245, 200, 66, 0.4);
+        background: rgba(10, 5, 4, 0.6);
         color: var(--gold);
         font-size: 1rem;
         cursor: pointer;
@@ -83,253 +121,406 @@
         align-items: center;
         justify-content: center;
         backdrop-filter: blur(8px);
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
         opacity: 0;
         animation: fadeIn 1s ease forwards 2s;
       }
       #audio-btn:hover {
         transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(245,200,66,0.3);
+        box-shadow: 0 0 20px rgba(245, 200, 66, 0.3);
       }
 
-        /* ── MAIN CONTENT ── */
-        #hero {
-          position: relative; z-index: 10;
-          width: 100%; height: 100vh;
-          display: flex; flex-direction: column;
-          justify-content: flex-end; align-items: center;
-          padding-bottom: clamp(3rem, 8vh, 5rem);
-          text-align: center;
-          padding-left: 1.5rem; padding-right: 1.5rem;
-        }
+      /* ── MAIN CONTENT ── */
+      #hero {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: clamp(3rem, 8vh, 5rem);
+        text-align: center;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
 
-        .tag {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(0.75rem, 1.5vw, 0.95rem);
-          font-weight: 300; font-style: italic;
-          letter-spacing: 0.35em;
-          color: var(--gold);
-          text-transform: uppercase;
-          opacity: 0;
-          animation: fadeUp 0.9s ease forwards 0.3s;
-          margin-bottom: 0.7rem;
+      /* ADD THIS BELOW */
+      @media (max-width: 480px) {
+        #hero {
+          justify-content: flex-end;
+          padding-bottom: 4.5rem;
         }
 
         h1 {
-          font-family: 'Playfair Display', serif;
-          font-weight: 900;
-          font-size: clamp(3.2rem, 11vw, 8.5rem);
-          line-height: 0.92;
-          color: var(--cream);
-          opacity: 0;
-          animation: fadeUp 1s ease forwards 0.6s;
-          text-shadow: 0 4px 40px rgba(245,200,66,0.18), 0 2px 0 rgba(0,0,0,0.5);
-          letter-spacing: -0.02em;
-        }
-
-        h1 .gee {
-          color: var(--gold);
-          display: inline-block;
-          animation: fadeUp 1s ease forwards 0.6s, pulse-gold 3s ease-in-out infinite 2s;
-          -webkit-text-stroke: 1px rgba(245,200,66,0.3);
+          font-size: clamp(2.6rem, 16vw, 4rem);
         }
 
         .subtitle {
-          font-size: clamp(1rem, 2.5vw, 1.4rem);
-          font-weight: 300; font-style: italic;
-          color: rgba(255,248,231,0.7);
-          /* margin-top: 1rem; */
-          opacity: 0;
-          animation: fadeUp 1s ease forwards 0.9s;
-          max-width: 520px;
-          line-height: 1.3;
+          font-size: 1rem;
+          margin-top: 0.5rem;
         }
 
         .divider {
-          width: 80px; height: 1px;
-          background: linear-gradient(90deg, transparent, var(--gold), transparent);
-          margin: 0.5rem auto;
-          opacity: 0;
-          animation: fadeUp 1s ease forwards 1.1s;
+          margin: 0.8rem auto;
         }
 
-        /* ── SURPRISE BUTTON ── */
         #surprise-btn {
-          margin-top: 0.5rem;
-          padding: 0.65rem 2.6rem;
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1rem, 2vw, 1.0rem);
-          font-weight: 400; font-style: italic;
-          letter-spacing: 0.12em;
-          color: var(--deep);
-          background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-          border: none; border-radius: 3px;
-          cursor: pointer;
-          position: relative; overflow: hidden;
-          box-shadow: 0 6px 30px rgba(245,200,66,0.35), 0 2px 8px rgba(0,0,0,0.5);
-          opacity: 0;
-          animation: fadeUp 1s ease forwards 1.4s;
-          transition: transform 0.2s, box-shadow 0.2s;
+          margin-top: 1.2rem;
+          padding: 0.75rem 2rem;
         }
-        #surprise-btn::before {
-          content: '';
-          position: absolute; inset: 0;
-          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
-          transform: translateX(-100%);
-          transition: transform 0.5s;
-        }
-        #surprise-btn:hover::before { transform: translateX(100%); }
-        #surprise-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 40px rgba(245,200,66,0.5), 0 4px 12px rgba(0,0,0,0.5);
-        }
-        #surprise-btn:active { transform: scale(0.97); }
+      }
 
-        /* ── FLOATING DATE BADGE ── */
+      .tag {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+        font-weight: 300;
+        font-style: italic;
+        letter-spacing: 0.35em;
+        color: var(--gold);
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeUp 0.9s ease forwards 0.3s;
+        margin-bottom: 0.7rem;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(3.2rem, 11vw, 8.5rem);
+        line-height: 0.92;
+        color: var(--cream);
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 0.6s;
+        text-shadow:
+          0 4px 40px rgba(245, 200, 66, 0.18),
+          0 2px 0 rgba(0, 0, 0, 0.5);
+        letter-spacing: -0.02em;
+      }
+
+      h1 .gee {
+        color: var(--gold);
+        display: inline-block;
+        animation:
+          fadeUp 1s ease forwards 0.6s,
+          pulse-gold 3s ease-in-out infinite 2s;
+        -webkit-text-stroke: 1px rgba(245, 200, 66, 0.3);
+      }
+
+      .subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        font-weight: 300;
+        font-style: italic;
+        color: rgba(255, 248, 231, 0.7);
+        /* margin-top: 1rem; */
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 0.9s;
+        max-width: 520px;
+        line-height: 1.3;
+      }
+
+      .divider {
+        width: 80px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        margin: 0.5rem auto;
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 1.1s;
+      }
+
+      /* ── SURPRISE BUTTON ── */
+      #surprise-btn {
+        margin-top: 0.5rem;
+        padding: 0.65rem 2.6rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1rem, 2vw, 1rem);
+        font-weight: 400;
+        font-style: italic;
+        letter-spacing: 0.12em;
+        color: var(--deep);
+        background: linear-gradient(
+          135deg,
+          var(--gold) 0%,
+          var(--gold-light) 50%,
+          var(--gold) 100%
+        );
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        box-shadow:
+          0 6px 30px rgba(245, 200, 66, 0.35),
+          0 2px 8px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 1.4s;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      #surprise-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.35) 50%,
+          transparent 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+      }
+      #surprise-btn:hover::before {
+        transform: translateX(100%);
+      }
+      #surprise-btn:hover {
+        transform: translateY(-3px);
+        box-shadow:
+          0 10px 40px rgba(245, 200, 66, 0.5),
+          0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+      #surprise-btn:active {
+        transform: scale(0.97);
+      }
+
+      /* ── FLOATING DATE BADGE ── */
+      .date-badge {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70px;
+        opacity: 0;
+        animation: fadeIn 1s ease forwards 1.8s;
+      }
+      .date-badge .month {
+        font-size: 0.65rem;
+        font-weight: 300;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+      }
+      .date-badge .day {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--cream);
+        line-height: 1;
+      }
+      .date-badge .year {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        color: rgba(255, 248, 231, 0.4);
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* ── SURPRISE OVERLAY ── */
+      #surprise-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 5, 4, 0);
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          opacity 0.5s,
+          background 0.5s;
+      }
+      #surprise-overlay.active {
+        opacity: 1;
+        background: rgba(10, 5, 4, 0.88);
+        pointer-events: all;
+      }
+      #surprise-card {
+        background: linear-gradient(145deg, #1a0c08, #120408);
+        border: 1px solid rgba(245, 200, 66, 0.25);
+        border-radius: 8px;
+        padding: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 6vw, 4rem);
+        max-width: 540px;
+        width: 90%;
+        text-align: center;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.7),
+          inset 0 1px 0 rgba(245, 200, 66, 0.1);
+        transform: scale(0.85) translateY(30px);
+        transition:
+          transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.5s;
+        opacity: 0;
+        position: relative;
+      }
+      #surprise-overlay.active #surprise-card {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+      #surprise-card .emoji-row {
+        font-size: 2.5rem;
+        margin-bottom: 1.2rem;
+        animation: none;
+      }
+      #surprise-overlay.active .emoji-row {
+        animation: bounce-in 0.6s ease 0.2s both;
+      }
+      #surprise-card h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        color: var(--gold);
+        font-weight: 700;
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+      #surprise-card p {
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+        color: rgba(255, 248, 231, 0.8);
+        line-height: 1.75;
+        font-weight: 300;
+      }
+      #surprise-card .close-btn {
+        margin-top: 2rem;
+        display: inline-block;
+        padding: 0.6rem 2rem;
+        border: 1px solid rgba(245, 200, 66, 0.4);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        border-radius: 2px;
+        background: transparent;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      #surprise-card .close-btn:hover {
+        background: rgba(245, 200, 66, 0.12);
+        color: var(--gold-light);
+      }
+
+      /* ── CONFETTI ── */
+      .confetti-piece {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        top: -20px;
+        z-index: 200;
+        pointer-events: none;
+        animation: confetti-fall linear forwards;
+      }
+
+      /* ── KEYFRAMES ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes pulse-gold {
+        0%,
+        100% {
+          text-shadow:
+            0 0 20px rgba(245, 200, 66, 0.4),
+            0 4px 40px rgba(245, 200, 66, 0.18);
+        }
+        50% {
+          text-shadow:
+            0 0 40px rgba(245, 200, 66, 0.8),
+            0 4px 60px rgba(245, 200, 66, 0.35);
+        }
+      }
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0.3);
+          opacity: 0;
+        }
+        60% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      @keyframes confetti-fall {
+        0% {
+          transform: translateY(0) rotate(0deg) scale(1);
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      /* ── FOOTER ── */
+      #footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        text-align: center;
+        padding: 0.5rem 1rem 0.8rem;
+        background: linear-gradient(to top, rgba(10, 5, 4, 0.85), transparent);
+        opacity: 0;
+        animation: fadeIn 1s ease forwards 2.2s;
+      }
+      #footer p {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+        font-style: italic;
+        color: rgba(255, 248, 231, 0.45);
+        letter-spacing: 0.08em;
+      }
+      #footer a {
+        color: var(--gold);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      #footer a:hover {
+        opacity: 0.75;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 480px) {
         .date-badge {
-          position: fixed; top: 2rem; right: 2rem; z-index: 20;
-          display: flex; flex-direction: column; align-items: center;
-          width: 70px;
-          opacity: 0;
-          animation: fadeIn 1s ease forwards 1.8s;
+          top: 1rem;
+          right: 1rem;
         }
-        .date-badge .month {
-          font-size: 0.65rem; font-weight: 300;
-          letter-spacing: 0.25em; text-transform: uppercase;
-          color: var(--gold); font-family: 'Cormorant Garamond', serif;
+        #hero {
+          padding-bottom: clamp(5rem, 12vh, 7rem);
         }
-        .date-badge .day {
-          font-family: 'Playfair Display', serif;
-          font-size: 2.8rem; font-weight: 900;
-          color: var(--cream); line-height: 1;
-        }
-        .date-badge .year {
-          font-size: 0.6rem; letter-spacing: 0.2em;
-          color: rgba(255,248,231,0.4);
-          font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* ── SURPRISE OVERLAY ── */
-        #surprise-overlay {
-          position: fixed; inset: 0; z-index: 100;
-          display: flex; align-items: center; justify-content: center;
-          background: rgba(10,5,4,0.0);
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.5s, background 0.5s;
-        }
-        #surprise-overlay.active {
-          opacity: 1;
-          background: rgba(10,5,4,0.88);
-          pointer-events: all;
-        }
-        #surprise-card {
-          background: linear-gradient(145deg, #1a0c08, #120408);
-          border: 1px solid rgba(245,200,66,0.25);
-          border-radius: 8px;
-          padding: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 6vw, 4rem);
-          max-width: 540px; width: 90%;
-          text-align: center;
-          box-shadow: 0 30px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(245,200,66,0.1);
-          transform: scale(0.85) translateY(30px);
-          transition: transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.5s;
-          opacity: 0;
-          position: relative;
-        }
-        #surprise-overlay.active #surprise-card {
-          transform: scale(1) translateY(0);
-          opacity: 1;
-        }
-        #surprise-card .emoji-row {
-          font-size: 2.5rem; margin-bottom: 1.2rem;
-          animation: none;
-        }
-        #surprise-overlay.active .emoji-row { animation: bounce-in 0.6s ease 0.2s both; }
-        #surprise-card h2 {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(1.6rem, 4vw, 2.4rem);
-          color: var(--gold); font-weight: 700; font-style: italic;
-          margin-bottom: 1rem;
-        }
-        #surprise-card p {
-          font-size: clamp(1rem, 2.2vw, 1.2rem);
-          color: rgba(255,248,231,0.8);
-          line-height: 1.75; font-weight: 300;
-        }
-        #surprise-card .close-btn {
-          margin-top: 2rem;
-          display: inline-block;
-          padding: 0.6rem 2rem;
-          border: 1px solid rgba(245,200,66,0.4);
-          color: var(--gold); font-family: 'Cormorant Garamond', serif;
-          font-size: 0.95rem; letter-spacing: 0.15em;
-          cursor: pointer; border-radius: 2px;
-          background: transparent;
-          transition: background 0.2s, color 0.2s;
-        }
-        #surprise-card .close-btn:hover {
-          background: rgba(245,200,66,0.12); color: var(--gold-light);
-        }
-
-        /* ── CONFETTI ── */
-        .confetti-piece {
-          position: fixed; width: 10px; height: 10px;
-          top: -20px; z-index: 200;
-          pointer-events: none;
-          animation: confetti-fall linear forwards;
-        }
-
-        /* ── KEYFRAMES ── */
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; } to { opacity: 1; }
-        }
-        @keyframes pulse-gold {
-          0%, 100% { text-shadow: 0 0 20px rgba(245,200,66,0.4), 0 4px 40px rgba(245,200,66,0.18); }
-          50%       { text-shadow: 0 0 40px rgba(245,200,66,0.8), 0 4px 60px rgba(245,200,66,0.35); }
-        }
-        @keyframes bounce-in {
-          0%   { transform: scale(0.3); opacity: 0; }
-          60%  { transform: scale(1.2); opacity: 1; }
-          100% { transform: scale(1); }
-        }
-        @keyframes confetti-fall {
-          0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-          80%  { opacity: 1; }
-          100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; }
-        }
-
-        /* ── FOOTER ── */
-        #footer {
-          position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
-          text-align: center;
-          padding:0.5rem 1rem 0.8rem;
-          background: linear-gradient(to top, rgba(10,5,4,0.85), transparent);
-          opacity: 0;
-          animation: fadeIn 1s ease forwards 2.2s;
-        }
-        #footer p {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-          font-style: italic;
-          color: rgba(255,248,231,0.45);
-          letter-spacing: 0.08em;
-        }
-        #footer a {
-          color: var(--gold);
-          text-decoration: none;
-          transition: opacity 0.2s;
-        }
-        #footer a:hover { opacity: 0.75; }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 480px) {
-          .date-badge { top: 1rem; right: 1rem; }
-          #hero { padding-bottom: clamp(5rem, 12vh, 7rem) }
-        }
+      }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
